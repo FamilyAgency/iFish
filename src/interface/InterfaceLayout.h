@@ -3,6 +3,15 @@
 
 namespace iFish
 {
+	enum class InterfaceEventType
+	{
+		None,
+		AddPoint,
+		ChangeArt,
+		ClearArt,
+		ResetTimer
+	};
+
 	typedef ofPtr<class InterfaceLayout> InterfaceLayoutPtr;
 
 	class InterfaceLayout
@@ -10,7 +19,7 @@ namespace iFish
 	public:
 		InterfaceLayout();
 
-		ofEvent<void> changeArtEvent;
+		ofEvent<InterfaceEventType> InterfaceEvent;
 
 		virtual void update() = 0;
 		virtual void draw() = 0;

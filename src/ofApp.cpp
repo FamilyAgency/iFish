@@ -12,7 +12,7 @@ void ofApp::setup()
 
 #ifdef DEBUG_VERSION	
 	interfaceLayout = InterfaceLayoutPtr(new IFishInterfaceLayout());
-	ofAddListener(interfaceLayout->changeArtEvent, this, &ofApp::onChangeArt);
+	ofAddListener(interfaceLayout->InterfaceEvent, this, &ofApp::onInterfaceEvent);
 #endif
 
 	tracker = iFish::TrackerPtr(new CameraTracker());//TwoCameraTracker	
@@ -35,9 +35,14 @@ void ofApp::onConfigLoadComplete()
 }
 
 //--------------------------------------------------------------
-void ofApp::onChangeArt()
+void ofApp::onInterfaceEvent(iFish::InterfaceEventType& Event)
 {
-	artDrawer->changeArt();
+	switch (Event)
+	{
+		case InterfaceEventType::ChangeArt:
+			artDrawer->changeArt();
+		break;
+	}	
 }
 
 //--------------------------------------------------------------

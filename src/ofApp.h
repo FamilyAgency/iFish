@@ -27,6 +27,6 @@ private:
 #endif
 
 	void onConfigLoadComplete();
-	void onChangeArt();
+	void onInterfaceEvent(iFish::InterfaceEventType& Event);
 		
 };

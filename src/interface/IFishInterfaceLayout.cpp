@@ -23,7 +23,8 @@ void IFishInterfaceLayout::draw()
 
 void IFishInterfaceLayout::onButtonChangeArtEvent(ofxDatGuiButtonEvent event)
 {
-	ofNotifyEvent(changeArtEvent, this);	
+	auto type = InterfaceEventType::ChangeArt;
+	ofNotifyEvent(InterfaceEvent, type);
 }
 
 IFishInterfaceLayout::~IFishInterfaceLayout()
