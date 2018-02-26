@@ -1,0 +1,11 @@
+*.opendb
+*.pdb
+*.obj
+*.db
+*.log
+*.tlog
+*.exp
+obj/
+.vs/
+ipch/
+bin/
