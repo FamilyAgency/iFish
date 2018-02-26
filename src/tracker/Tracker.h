@@ -11,7 +11,18 @@ namespace iFish
 		Tracker();
 		virtual void update() = 0;
 		virtual void draw() = 0;
+		virtual void clear();
+
+		virtual ofVec3f getLastPoint() const;
+		virtual std::vector<ofVec3f> getAllPoints() const;
+
 		virtual ~Tracker();
+
+		ofEvent<ofVec3f> newPointEvent;
+
+	protected:
+		ofVec3f lastTrackedPoint;
+		std::vector<ofVec3f> trackedPoints;
 	};
 }
 

@@ -10,8 +10,10 @@ namespace iFish
 	{
 	public:
 		CameraTracker();
-		virtual void update();
-		virtual void draw();
+		virtual void update() override;
+		virtual void draw() override;
+		virtual void clear() override;		
+
 		virtual ~CameraTracker();
 	};
 }
