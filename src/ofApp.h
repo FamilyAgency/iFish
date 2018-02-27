@@ -2,10 +2,9 @@
 
 #include "ofMain.h"
 #include "tracker/Tracker.h"
-
 #include "config/Config.h"
 #include "art/ArtDrawer.h"
-#include "interface/InterfaceLayout.h"
+#include "interface/TestInterfaceLayout.h"
 
 #define DEBUG_VERSION//
 
@@ -23,7 +22,9 @@ private:
 	iFish::ArtDrawerPtr artDrawer;
 
 #ifdef DEBUG_VERSION
-	iFish::InterfaceLayoutPtr interfaceLayout;
+	iFish::TestInterfaceLayoutPtr trackerTestInterfaceLayout;
+	iFish::TestInterfaceLayoutPtr art1TestInterfaceLayout;
+	iFish::TestInterfaceLayoutPtr art2TestInterfaceLayout;
 #endif
 
 	void onConfigLoadComplete();

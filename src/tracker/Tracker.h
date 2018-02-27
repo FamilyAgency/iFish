@@ -9,6 +9,9 @@ namespace iFish
 	{
 	public:
 		Tracker();
+
+		ofEvent<ofVec3f> newPointEvent;
+
 		virtual void update() = 0;
 		virtual void draw() = 0;
 		virtual void clear();
@@ -16,9 +19,7 @@ namespace iFish
 		virtual ofVec3f getLastPoint() const;
 		virtual std::vector<ofVec3f> getAllPoints() const;
 
-		virtual ~Tracker();
-
-		ofEvent<ofVec3f> newPointEvent;
+		virtual ~Tracker();		
 
 	protected:
 		ofVec3f lastTrackedPoint;

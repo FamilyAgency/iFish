@@ -49,12 +49,6 @@
     <ClCompile Include="src\art\ArtDrawer.cpp">
       <Filter>src\art</Filter>
     </ClCompile>
-    <ClCompile Include="src\interface\IFishInterfaceLayout.cpp">
-      <Filter>src\interface</Filter>
-    </ClCompile>
-    <ClCompile Include="src\interface\InterfaceLayout.cpp">
-      <Filter>src\interface</Filter>
-    </ClCompile>
     <ClCompile Include="src\art\frames\Art1.cpp">
       <Filter>src\art\frames</Filter>
     </ClCompile>
@@ -63,6 +57,15 @@
     </ClCompile>
     <ClCompile Include="src\art\frames\BaseArt.cpp">
       <Filter>src\art\frames</Filter>
+    </ClCompile>
+    <ClCompile Include="src\interface\TestArt1InterfaceLayout.cpp">
+      <Filter>src\interface</Filter>
+    </ClCompile>
+    <ClCompile Include="src\interface\TestInterfaceLayout.cpp">
+      <Filter>src\interface</Filter>
+    </ClCompile>
+    <ClCompile Include="src\interface\TestTrackerInterfaceLayout.cpp">
+      <Filter>src\interface</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -779,12 +782,6 @@
     <ClInclude Include="src\art\ArtDrawer.h">
       <Filter>src\art</Filter>
     </ClInclude>
-    <ClInclude Include="src\interface\IFishInterfaceLayout.h">
-      <Filter>src\interface</Filter>
-    </ClInclude>
-    <ClInclude Include="src\interface\InterfaceLayout.h">
-      <Filter>src\interface</Filter>
-    </ClInclude>
     <ClInclude Include="src\art\frames\Art1.h">
       <Filter>src\art\frames</Filter>
     </ClInclude>
@@ -793,6 +790,15 @@
     </ClInclude>
     <ClInclude Include="src\art\frames\BaseArt.h">
       <Filter>src\art\frames</Filter>
+    </ClInclude>
+    <ClInclude Include="src\interface\TestArt1InterfaceLayout.h">
+      <Filter>src\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\interface\TestInterfaceLayout.h">
+      <Filter>src\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\interface\TestTrackerInterfaceLayout.h">
+      <Filter>src\interface</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

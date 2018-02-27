@@ -176,8 +176,9 @@
     <ClCompile Include="src\art\frames\Art2.cpp" />
     <ClCompile Include="src\art\frames\BaseArt.cpp" />
     <ClCompile Include="src\config\Config.cpp" />
-    <ClCompile Include="src\interface\IFishInterfaceLayout.cpp" />
-    <ClCompile Include="src\interface\InterfaceLayout.cpp" />
+    <ClCompile Include="src\interface\TestArt1InterfaceLayout.cpp" />
+    <ClCompile Include="src\interface\TestInterfaceLayout.cpp" />
+    <ClCompile Include="src\interface\TestTrackerInterfaceLayout.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="..\..\..\addons\ofxDatGui\src\core\ofxDatGuiComponent.cpp" />
@@ -199,8 +200,9 @@
     <ClInclude Include="src\art\frames\Art2.h" />
     <ClInclude Include="src\art\frames\BaseArt.h" />
     <ClInclude Include="src\config\Config.h" />
-    <ClInclude Include="src\interface\IFishInterfaceLayout.h" />
-    <ClInclude Include="src\interface\InterfaceLayout.h" />
+    <ClInclude Include="src\interface\TestArt1InterfaceLayout.h" />
+    <ClInclude Include="src\interface\TestInterfaceLayout.h" />
+    <ClInclude Include="src\interface\TestTrackerInterfaceLayout.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="..\..\..\addons\ofxDatGui\src\components\ofxDatGui2dPad.h" />
     <ClInclude Include="..\..\..\addons\ofxDatGui\src\components\ofxDatGuiButton.h" />
