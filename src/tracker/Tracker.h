@@ -11,6 +11,7 @@ namespace iFish
 		Tracker();
 
 		ofEvent<ofVec3f> newPointEvent;
+		ofEvent<ofVec3f> errorEvent;
 
 		virtual void update() = 0;
 		virtual void draw() = 0;

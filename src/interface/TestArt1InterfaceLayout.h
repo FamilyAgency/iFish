@@ -16,9 +16,6 @@ namespace iFish
 		virtual ~TestArt1InterfaceLayout();
 
 	private:
-		ofPtr<ofxDatGuiButton> nextArtBtn;
-
-		void nextArtButtonClicked(ofxDatGuiButtonEvent event);
 		
 	};
 }
