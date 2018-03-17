@@ -14,8 +14,16 @@ void Art1::update()
 
 void Art1::draw()
 {
-	ofSetColor(ofFloatColor(1, 0, 0));
-	ofDrawCircle(ofPoint(400, 400), 30);
+	ofSetColor(ofFloatColor(250, 0, 0));
+
+	//ofDrawCircle(ofPoint(400, 400), 30);
+
+	for (int j = 0; j < points.size(); ++j) {
+		ofDrawCircle(points[j], 5);
+		if (j > 0) {
+			ofDrawLine(points[j - 1], points[j]);
+		}
+	}
 }
 
 Art1::~Art1()

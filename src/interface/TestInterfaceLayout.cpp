@@ -4,7 +4,7 @@ using namespace iFish;
 
 TestInterfaceLayout::TestInterfaceLayout()
 {
-	
+
 }
 
 TestInterfaceLayout::~TestInterfaceLayout()
@@ -20,7 +20,7 @@ void TestInterfaceLayout::update()
 		{
 			components[i]->update();
 		}
-	}	
+	}
 }
 
 void TestInterfaceLayout::draw()
@@ -52,5 +52,4 @@ void TestInterfaceLayout::setPosition(const ofPoint& position)
 		components[i]->setPosition(paddingLeft, position.y + i * shiftY);
 	}
 }
-
 

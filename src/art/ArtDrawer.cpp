@@ -33,6 +33,18 @@ void ArtDrawer::changeArt()
 	ofLog(ofLogLevel::OF_LOG_NOTICE, "Change Art...");
 }
 
+
+void ArtDrawer::addPointToArt()
+{
+	currentArt->addPoint();
+}
+
+void ArtDrawer::clearArt()
+{
+	currentArt->clear();
+}
+
+
 ArtDrawer::~ArtDrawer()
 {
 

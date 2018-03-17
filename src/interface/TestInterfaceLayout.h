@@ -2,6 +2,7 @@
 #include "ofMain.h"
 #include "ofxDatGui.h"
 
+
 namespace iFish
 {
 	enum class InterfaceEventType
@@ -10,6 +11,9 @@ namespace iFish
 		TrackingStart,
 		TrackingStop,
 		NewPointCome,
+
+		AddPoint,
+		Clear,
 
 		ShowArt1,
 		ShowArt2,
@@ -38,4 +42,3 @@ namespace iFish
 		vector<ofPtr<ofxDatGuiComponent>> components;
 	};
 }
-

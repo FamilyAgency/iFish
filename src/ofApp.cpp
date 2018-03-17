@@ -56,7 +56,13 @@ void ofApp::onInterfaceEvent(iFish::InterfaceEventType& Event)
 	switch (Event)
 	{
 	case InterfaceEventType::ChangeArt:
-			artDrawer->changeArt();
+		artDrawer->changeArt();
+		break;
+	case InterfaceEventType::AddPoint:
+		artDrawer->addPointToArt();
+		break;
+	case InterfaceEventType::Clear:
+		artDrawer->clearArt();
 		break;
 	}	
 }

@@ -5,7 +5,7 @@ namespace iFish
 {
 	typedef ofPtr<class Tracker> TrackerPtr;
 
-	class Tracker
+	class Tracker 
 	{
 	public:
 		Tracker();
@@ -24,7 +24,11 @@ namespace iFish
 
 	protected:
 		ofVec3f lastTrackedPoint;
-		std::vector<ofVec3f> trackedPoints;
+		std::vector<ofVec3f> trackedPoints;/* = {
+			ofVec3f(50, 50, 50), 
+			ofVec3f(150, 150, 150), 
+			ofVec3f(250, 250, 250), 
+			ofVec3f(350, 350, 350)};*/
 	};
 }
 

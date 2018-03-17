@@ -12,7 +12,6 @@ namespace iFish
 		Art2();
 		virtual void update();
 		virtual void draw();
-		
 		virtual ~Art2();
 
 	private:

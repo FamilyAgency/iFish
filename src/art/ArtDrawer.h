@@ -1,6 +1,8 @@
 #pragma once
 #include "ofMain.h"
 #include "frames/BaseArt.h"
+#include "../interface/TestArt1InterfaceLayout.h"
+
 
 namespace iFish
 {
@@ -13,13 +15,16 @@ namespace iFish
 
 	typedef ofPtr<class ArtDrawer> ArtDrawerPtr;
 
-	class ArtDrawer
+	class ArtDrawer : public Tracker
 	{
 	public:
 		ArtDrawer();
 		virtual void update();
 		virtual void draw();
 		virtual void changeArt();
+		
+		void addPointToArt();
+		void clearArt();
 
 		virtual ~ArtDrawer();
 

@@ -11,10 +11,15 @@ namespace iFish
 		BaseArt();
 		virtual void update() = 0;
 		virtual void draw() = 0;
+
+		void addPoint();
+		void clear();
+
 		virtual ~BaseArt();
 
-	private:
+	protected:
 		// arts vector
+		std::vector<ofVec3f> points;
 	};
 }
 
