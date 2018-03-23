@@ -19,11 +19,12 @@ namespace iFish
 	{
 	public:
 		ArtDrawer();
+
 		virtual void update();
 		virtual void draw();
 		virtual void changeArt();
 		
-		void addPointToArt();
+		void addPointToArt(ofVec3f point);
 		void clearArt();
 
 		virtual ~ArtDrawer();

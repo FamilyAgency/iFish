@@ -34,9 +34,9 @@ void ArtDrawer::changeArt()
 }
 
 
-void ArtDrawer::addPointToArt()
+void ArtDrawer::addPointToArt(ofVec3f point)
 {
-	currentArt->addPoint();
+	currentArt->addPoint(point);
 }
 
 void ArtDrawer::clearArt()

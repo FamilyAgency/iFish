@@ -1,5 +1,6 @@
 #pragma once
 #include "ofMain.h"
+#include "../interface/TestTrackerInterfaceLayout.h"
 
 namespace iFish
 {
@@ -10,13 +11,13 @@ namespace iFish
 	public:
 		Tracker();
 
-		ofEvent<ofVec3f> newPointEvent;
+		ofEvent<InterfaceEventType> newPointEvent;
 		ofEvent<ofVec3f> errorEvent;
 
 		virtual void update() = 0;
 		virtual void draw() = 0;
 		virtual void clear();
-
+		virtual void addPointToTracker();
 		virtual ofVec3f getLastPoint() const;
 		virtual std::vector<ofVec3f> getAllPoints() const;
 
@@ -24,11 +25,7 @@ namespace iFish
 
 	protected:
 		ofVec3f lastTrackedPoint;
-		std::vector<ofVec3f> trackedPoints;/* = {
-			ofVec3f(50, 50, 50), 
-			ofVec3f(150, 150, 150), 
-			ofVec3f(250, 250, 250), 
-			ofVec3f(350, 350, 350)};*/
+		std::vector<ofVec3f> trackedPoints;
 	};
 }
 

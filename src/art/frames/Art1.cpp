@@ -18,9 +18,11 @@ void Art1::draw()
 
 	//ofDrawCircle(ofPoint(400, 400), 30);
 
-	for (int j = 0; j < points.size(); ++j) {
+	for (int j = 0; j < points.size(); ++j)
+	{
 		ofDrawCircle(points[j], 5);
-		if (j > 0) {
+		if (j > 0) 
+		{
 			ofDrawLine(points[j - 1], points[j]);
 		}
 	}

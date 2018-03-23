@@ -30,6 +30,7 @@ void ofApp::setup()
 #endif
 
 	tracker = iFish::TrackerPtr(new CameraTracker());//TwoCameraTracker	
+	ofAddListener(tracker->newPointEvent, this, &ofApp::onInterfaceEvent);
 	artDrawer = ArtDrawerPtr(new ArtDrawer());	
 
 	//schedule = SchedulePtr(new Schedule());
@@ -59,12 +60,16 @@ void ofApp::onInterfaceEvent(iFish::InterfaceEventType& Event)
 		artDrawer->changeArt();
 		break;
 	case InterfaceEventType::AddPoint:
-		artDrawer->addPointToArt();
+		tracker->addPointToTracker();
 		break;
 	case InterfaceEventType::Clear:
 		artDrawer->clearArt();
+		tracker->clear();
 		break;
-	}	
+	case InterfaceEventType::NewPointCome:
+		artDrawer->addPointToArt(tracker->getLastPoint());
+		break;
+	}
 }
 
 //--------------------------------------------------------------

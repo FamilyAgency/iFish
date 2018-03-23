@@ -12,7 +12,7 @@ namespace iFish
 		virtual void update() = 0;
 		virtual void draw() = 0;
 
-		void addPoint();
+		void addPoint(ofVec3f);
 		void clear();
 
 		virtual ~BaseArt();

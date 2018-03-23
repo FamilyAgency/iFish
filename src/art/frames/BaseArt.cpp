@@ -7,10 +7,10 @@ BaseArt::BaseArt()
 	
 }
 
-void BaseArt::addPoint()
+void BaseArt::addPoint(ofVec3f point)
 {
 	ofLog(ofLogLevel::OF_LOG_NOTICE, "Add Point...");
-	points.push_back(ofVec3f(rand() % 1000, rand() % 1000, 0));
+	points.push_back(point);
 	draw();
 }
 
