@@ -16,8 +16,6 @@ void Art1::draw()
 {
 	ofSetColor(ofFloatColor(250, 0, 0));
 
-	//ofDrawCircle(ofPoint(400, 400), 30);
-
 	for (int j = 0; j < points.size(); ++j)
 	{
 		ofDrawCircle(points[j], 5);

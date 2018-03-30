@@ -11,7 +11,7 @@ ArtDrawer::ArtDrawer()
 	arts.push_back(BaseArtPtr(new Art1()));
 	arts.push_back(BaseArtPtr(new Art2()));
 
-	currentArtIndex = 0;
+	currentArtIndex = 1;//0
 	currentArt = arts[currentArtIndex];
 }
 

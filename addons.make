@@ -1,2 +1,3 @@
-ofxOpenCv
 ofxDatGui
+ofxInkSim
+ofxOpenCv

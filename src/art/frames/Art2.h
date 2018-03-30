@@ -1,6 +1,8 @@
 #pragma once
 #include "ofMain.h"
 #include "BaseArt.h"
+#include "ofxInkSim.h"
+#include "SampleBrush.h"
 
 namespace iFish
 {
@@ -15,7 +17,13 @@ namespace iFish
 		virtual ~Art2();
 
 	private:
-		// arts vector
+		ofxInkSim inkSim;
+		SampleBrush brush;
+
+		const double changeConst = 0.2;
+		const double epsilonConst = 0.0001;
+
+		bool isDifferent(ofVec3f pointA, ofVec3f pointB);
 	};
 }
 
