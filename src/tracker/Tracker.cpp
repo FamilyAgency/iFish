@@ -10,7 +10,7 @@ Tracker::Tracker()
 void Tracker::addPointToTracker()
 {
 	ofLog(ofLogLevel::OF_LOG_NOTICE, "Add point to tracker");
-	lastTrackedPoint = ofVec3f(rand() % 1000, rand() % 700, 0);	// Randome point
+	lastTrackedPoint = ofVec3f(rand() % ofGetWindowWidth(), rand() % ofGetWindowHeight(), 0);	// Randome point
 	trackedPoints.push_back(lastTrackedPoint);
 	auto type = InterfaceEventType::NewPointCome;
 	ofNotifyEvent(newPointEvent, type);
