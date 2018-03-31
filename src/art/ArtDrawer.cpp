@@ -1,6 +1,7 @@
 #include "ArtDrawer.h"
 #include "frames/Art1.h"
 #include "frames/Art2.h"
+#include "frames/Art3.h"
 
 using namespace iFish;
 
@@ -10,8 +11,9 @@ ArtDrawer::ArtDrawer()
 
 	arts.push_back(BaseArtPtr(new Art1()));
 	arts.push_back(BaseArtPtr(new Art2()));
+	arts.push_back(BaseArtPtr(new Art3()));
 
-	currentArtIndex = 1;//0
+	currentArtIndex = 2;//0
 	currentArt = arts[currentArtIndex];
 }
 

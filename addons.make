@@ -1,3 +1,5 @@
+ofxCurlNoise
 ofxDatGui
+ofxGui
 ofxInkSim
 ofxOpenCv
