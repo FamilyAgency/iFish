@@ -13,7 +13,7 @@ ArtDrawer::ArtDrawer()
 	arts.push_back(BaseArtPtr(new Art2()));
 	arts.push_back(BaseArtPtr(new Art3()));
 
-	currentArtIndex = 2;//0
+	currentArtIndex = 0;
 	currentArt = arts[currentArtIndex];
 }
 

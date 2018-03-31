@@ -16,6 +16,10 @@ TestArt1InterfaceLayout::TestArt1InterfaceLayout()
 	clearButton->onButtonEvent(this, &TestArt1InterfaceLayout::clearButtonClicked);
 	components.push_back(clearButton);
 
+	changeArtButton = ofPtr<ofxDatGuiButton>(new ofxDatGuiButton("Change Art"));
+	changeArtButton->onButtonEvent(this, &TestArt1InterfaceLayout::changeArtButtonClicked);
+	components.push_back(changeArtButton);
+
 	//default align
 	setPosition(ofPoint(100, 40));
 }
@@ -25,6 +29,7 @@ void TestArt1InterfaceLayout::update()
 	TestInterfaceLayout::update();
 	clearButton->update();
 	addPointButton->update();
+	changeArtButton->update();
 }
 
 void TestArt1InterfaceLayout::draw()
@@ -41,6 +46,12 @@ void TestArt1InterfaceLayout::addPointButtonClicked(ofxDatGuiButtonEvent event)
 void TestArt1InterfaceLayout::clearButtonClicked(ofxDatGuiButtonEvent event)
 {
 	auto type = InterfaceEventType::Clear;
+	ofNotifyEvent(InterfaceEvent, type);
+}
+
+void TestArt1InterfaceLayout::changeArtButtonClicked(ofxDatGuiButtonEvent event)
+{
+	auto type = InterfaceEventType::ChangeArt;
 	ofNotifyEvent(InterfaceEvent, type);
 }
 

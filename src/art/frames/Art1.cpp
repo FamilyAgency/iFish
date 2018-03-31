@@ -14,7 +14,8 @@ void Art1::update()
 
 void Art1::draw()
 {
-	ofSetColor(ofFloatColor(250, 0, 0));
+	ofBackground(ofColor::white);
+	ofSetColor(ofColor(250, 0, 0));
 
 	for (int j = 0; j < points.size(); ++j)
 	{

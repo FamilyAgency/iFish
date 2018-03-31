@@ -34,6 +34,7 @@ void Art2::update()
 
 void Art2::draw()
 {
+	ofSetColor(ofColor::white);
 	inkSim.draw();
 }
 
