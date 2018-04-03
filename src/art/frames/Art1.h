@@ -34,6 +34,9 @@ namespace iFish
 						ofColor(15, 29, 137)}
 		};
 
+		int x = 0, y = 0;		
+		uint16_t startTime, endTime;
+
 	};
 }
 
