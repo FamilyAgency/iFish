@@ -22,6 +22,8 @@ void ofApp::setup()
 	art1TestInterfaceLayout->setVisibility(true);
 	ofAddListener(art1TestInterfaceLayout->InterfaceEvent, this, &ofApp::onInterfaceEvent);
 
+	numberOfSaveArt = 0;
+
 	/*addTestInterfaceLayout = TestInterfaceLayoutPtr(new TestArt1InterfaceLayout());
 	addTestInterfaceLayout->setPosition(ofPoint(600, 40));
 	addTestInterfaceLayout->setVisibility(true);
@@ -32,10 +34,10 @@ void ofApp::setup()
 	tracker = iFish::TrackerPtr(new CameraTracker());//TwoCameraTracker	
 	ofAddListener(tracker->newPointEvent, this, &ofApp::onInterfaceEvent);
 	artDrawer = ArtDrawerPtr(new ArtDrawer());	
+	artSaver = ArtSaverPtr(new ArtSaver());
 
 	//schedule = SchedulePtr(new Schedule());
 	//soundManager = SoundManagerPtr(new SoundManager());
-	//artSaver = ArtSaverPtr(new ArtSaver());
 	//tcpController = tcpControllerPtr(new tcpController());
 
 	config->load();
@@ -59,6 +61,14 @@ void ofApp::onInterfaceEvent(iFish::InterfaceEventType& Event)
 	case InterfaceEventType::ChangeArt:
 		artDrawer->changeArt();
 		break;
+	case InterfaceEventType::ChangeColor:
+		artDrawer->changeColor();
+		break;
+
+	case InterfaceEventType::SaveArt:
+		artSaver->saveArt(artDrawer->getArt(), "images\\" + std::to_string(numberOfSaveArt++) + ".png");
+		break;
+
 	case InterfaceEventType::AddPoint:
 		tracker->addPointToTracker();
 		break;

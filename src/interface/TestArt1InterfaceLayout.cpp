@@ -20,6 +20,14 @@ TestArt1InterfaceLayout::TestArt1InterfaceLayout()
 	changeArtButton->onButtonEvent(this, &TestArt1InterfaceLayout::changeArtButtonClicked);
 	components.push_back(changeArtButton);
 
+	changeColorButton = ofPtr<ofxDatGuiButton>(new ofxDatGuiButton("Change Color"));
+	changeColorButton->onButtonEvent(this, &TestArt1InterfaceLayout::changeColorButtonClicked);
+	components.push_back(changeColorButton);
+
+
+	saveArtButton = ofPtr<ofxDatGuiButton>(new ofxDatGuiButton("Save Art"));
+	saveArtButton->onButtonEvent(this, &TestArt1InterfaceLayout::saveArtButtonClicked);
+	components.push_back(saveArtButton);
 	//default align
 	setPosition(ofPoint(100, 40));
 }
@@ -30,6 +38,9 @@ void TestArt1InterfaceLayout::update()
 	clearButton->update();
 	addPointButton->update();
 	changeArtButton->update();
+	changeColorButton->update();
+
+	saveArtButton->update();
 }
 
 void TestArt1InterfaceLayout::draw()
@@ -52,6 +63,20 @@ void TestArt1InterfaceLayout::clearButtonClicked(ofxDatGuiButtonEvent event)
 void TestArt1InterfaceLayout::changeArtButtonClicked(ofxDatGuiButtonEvent event)
 {
 	auto type = InterfaceEventType::ChangeArt;
+	ofNotifyEvent(InterfaceEvent, type);
+}
+
+void TestArt1InterfaceLayout::changeColorButtonClicked(ofxDatGuiButtonEvent event)
+{
+	auto type = InterfaceEventType::ChangeColor;
+	ofNotifyEvent(InterfaceEvent, type);
+}
+
+
+
+void TestArt1InterfaceLayout::saveArtButtonClicked(ofxDatGuiButtonEvent event)
+{
+	auto type = InterfaceEventType::SaveArt;
 	ofNotifyEvent(InterfaceEvent, type);
 }
 

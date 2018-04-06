@@ -29,12 +29,10 @@ void Art2::update()
 		inkSim.clear();
 	}
 	inkSim.update();
-
 }
 
 void Art2::draw()
 {
-	ofSetColor(ofColor::white);
 	inkSim.draw();
 }
 

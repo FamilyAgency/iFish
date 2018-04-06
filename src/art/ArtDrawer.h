@@ -2,6 +2,7 @@
 #include "ofMain.h"
 #include "frames/BaseArt.h"
 #include "../interface/TestArt1InterfaceLayout.h"
+#include "ofFbo.h"
 
 
 namespace iFish
@@ -10,7 +11,8 @@ namespace iFish
 	{
 		None,
 		Art1,
-		Art2
+		Art2,
+		Art3
 	};
 
 	typedef ofPtr<class ArtDrawer> ArtDrawerPtr;
@@ -24,8 +26,13 @@ namespace iFish
 		virtual void draw();
 		virtual void changeArt();
 		
+		virtual void changeColor();
+
 		void addPointToArt(ofVec3f point);
 		void clearArt();
+
+		ofImage getArt() const;
+		void updateFBO();
 
 		virtual ~ArtDrawer();
 
@@ -33,6 +40,10 @@ namespace iFish
 		std::vector<BaseArtPtr> arts;
 		BaseArtPtr currentArt;
 		int currentArtIndex = 0;
+
+		ofFbo fbo;
+
+		uint16_t startTime, endTime;
 	};
 }
 

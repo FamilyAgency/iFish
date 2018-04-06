@@ -4,6 +4,7 @@
 #include "tracker/Tracker.h"
 #include "config/Config.h"
 #include "art/ArtDrawer.h"
+#include "art/ArtSaver.h"
 #include "interface/TestInterfaceLayout.h"
 
 #define DEBUG_VERSION//
@@ -20,6 +21,7 @@ private:
 	iFish::ConfigPtr config;
 	iFish::TrackerPtr tracker;
 	iFish::ArtDrawerPtr artDrawer;
+	iFish::ArtSaverPtr artSaver;
 
 #ifdef DEBUG_VERSION
 	iFish::TestInterfaceLayoutPtr trackerTestInterfaceLayout;
@@ -29,4 +31,6 @@ private:
 
 	void onConfigLoadComplete();
 	void onInterfaceEvent(iFish::InterfaceEventType& Event);
+
+	int numberOfSaveArt;
 };

@@ -5,13 +5,13 @@ using namespace iFish;
 Art1::Art1()
 {
 	ofLog(ofLogLevel::OF_LOG_NOTICE, "Concrete Art 1 init");
-	endTime = 1 * 10;
+	endTime = 1 * 15;
 	startTime = ofGetElapsedTimeMillis();
 }
 
 void Art1::update()
 {
-	//if (ofGetElapsedTimeMillis() - startTime >= endTime)
+	if (ofGetElapsedTimeMillis() - startTime >= endTime)
 	{
 		startTime = ofGetElapsedTimeMillis();
 		x = ofGetWindowWidth() * ofNoise(ofGetElapsedTimef());
@@ -22,17 +22,13 @@ void Art1::update()
 
 void Art1::draw()
 {
-	ofBackground(ofColor::white);
-	ofSetColor(ofColor(250, 0, 0));
+	ofBackground(colors[colorIt][0]);
 
 	for (int j = 0; j < points.size(); ++j)
 	{
-		ofDrawCircle(points[j], 3);
-		if (j > 0) 
-		{
-			ofSetLineWidth(3);
-			ofDrawLine(points[j - 1], points[j]);
-		}
+		ofSetColor(colors[colorIt][j % colors[colorIt].size()]);
+		ofFill();
+		ofDrawCircle(points[j], j % 5 + 1);
 	}
 }
 

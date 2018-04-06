@@ -15,6 +15,12 @@ namespace iFish
 		AddPoint,
 		Clear,
 
+		ChangeColor,
+
+
+		SaveArt,
+
+
 		ShowArt1,
 		ShowArt2,
 		ShowArt3,
