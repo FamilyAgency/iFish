@@ -5,10 +5,10 @@ using namespace iFish;
 Art2::Art2()
 {
 	ofLog(ofLogLevel::OF_LOG_NOTICE, "Concrete Art 2 init");
-	inkSim.setup();
+	//inkSim.setup();
 	//inkSim.setDrawMode(ofxInkSim::INKFIX);
 	//inkSim.setDrawMode(ofxInkSim::INKSURF);
-	inkSim.setDrawMode(ofxInkSim::INKFLOW);
+	//inkSim.setDrawMode(ofxInkSim::INKFLOW);
 }
 
 bool Art2::isDifferent(ofVec3f pointA, ofVec3f pointB)
@@ -19,7 +19,7 @@ bool Art2::isDifferent(ofVec3f pointA, ofVec3f pointB)
 
 void Art2::update()
 {
-	if (points.size() > 1 && isDifferent(points[points.size() - 2], points[points.size() - 1]))
+	/*if (points.size() > 1 && isDifferent(points[points.size() - 2], points[points.size() - 1]))
 	{
 		points[points.size() - 2] += (points[points.size() - 1] - points[points.size() - 2]) * changeConst;
 		inkSim.stroke(&brush, points[points.size() - 2].x, points[points.size() - 2].y, 
@@ -28,12 +28,12 @@ void Art2::update()
 	{
 		inkSim.clear();
 	}
-	inkSim.update();
+	inkSim.update();*/
 }
 
 void Art2::draw()
 {
-	inkSim.draw();
+	//inkSim.draw();
 }
 
 Art2::~Art2()
