@@ -10,8 +10,8 @@ namespace iFish
 	public:
 		Tracker();
 
-		ofEvent<ofVec3f> newPointEvent;
-		ofEvent<ofVec3f> errorEvent;
+		ofEvent<ofVec3f> newPointEvent;  // TODO
+		ofEvent<ofVec3f> errorEvent;  // TODO
 
 		virtual void update() = 0;
 		virtual void draw() = 0;

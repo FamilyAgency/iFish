@@ -29,8 +29,10 @@ void ofApp::setup()
 
 #endif
 
-	tracker = iFish::TrackerPtr(new CameraTracker());//TwoCameraTracker	
-	artDrawer = ArtDrawerPtr(new ArtDrawer());	
+	tracker = iFish::CameraTrackerPtr(new CameraTracker(640, 480));  //TwoCameraTracker
+	tracker->setPositionCamera(ofPoint(300, 40));
+	
+	artDrawer = ArtDrawerPtr(new ArtDrawer());
 
 	//schedule = SchedulePtr(new Schedule());
 	//soundManager = SoundManagerPtr(new SoundManager());
@@ -56,9 +58,17 @@ void ofApp::onInterfaceEvent(iFish::InterfaceEventType& Event)
 	switch (Event)
 	{
 	case InterfaceEventType::ChangeArt:
-			artDrawer->changeArt();
+		artDrawer->changeArt();
 		break;
-	}	
+
+	case InterfaceEventType::TrackingStart:
+		tracker->start();
+		break;
+
+	case InterfaceEventType::TrackingStop:
+		tracker->stop();
+		break;
+	}
 }
 
 //--------------------------------------------------------------
@@ -80,12 +90,28 @@ void ofApp::update()
 void ofApp::draw()
 {
 	tracker->draw();
-	artDrawer->draw();	
+	artDrawer->draw();
 
 #ifdef DEBUG_VERSION
 	// on top level
 	trackerTestInterfaceLayout->draw();
 	art1TestInterfaceLayout->draw();
+
+	// finally, a tracker report:
+	ofSetColor(0, 0, 0);
+	stringstream reportStr;
+	reportStr << "Press mouse button to something to change color setting." << endl;
+	reportStr << "Current color setting:" << endl;
+	reportStr << "min - (" + std::to_string(tracker->getTrackColorMin()[0]) + \
+		", " + std::to_string(tracker->getTrackColorMin()[1]) + ", " +
+		std::to_string(tracker->getTrackColorMin()[2]) + ");" << endl;
+
+	reportStr << "max - (" + std::to_string(tracker->getTrackColorMax()[0]) + \
+		", " + std::to_string(tracker->getTrackColorMax()[1]) + ", " +
+		std::to_string(tracker->getTrackColorMax()[2]) + ");" << endl;
+
+	reportStr << "velocity: " << std::to_string(tracker->getVelocity()) << endl;
+	ofDrawBitmapString(reportStr.str(), 400, 540);
 #endif
 }
 
@@ -93,4 +119,8 @@ void ofApp::draw()
 void ofApp::windowResized(int w, int h)
 {
 
+}
+
+void ofApp::mousePressed(int x, int y, int button) {
+	tracker->setColorsFromMousePressed(x, y);
 }
