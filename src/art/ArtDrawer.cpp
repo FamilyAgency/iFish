@@ -23,6 +23,11 @@ ArtDrawer::ArtDrawer()
 
 }
 
+void ArtDrawer::init(ConfigPtr config)
+{
+
+}
+
 void ArtDrawer::update()
 {
 	currentArt->update();

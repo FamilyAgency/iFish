@@ -1,5 +1,6 @@
 #pragma once
 #include "ofMain.h"
+#include "../../config/Config.h"
 
 
 namespace iFish
@@ -12,6 +13,7 @@ namespace iFish
 		BaseArt();
 		virtual void update() = 0;
 		virtual void draw() = 0;
+		virtual void init(ConfigPtr config);
 
 		void addPoint(ofVec3f);
 		void clear();
@@ -19,6 +21,8 @@ namespace iFish
 		void changeColor();
 
 		virtual ~BaseArt();
+		
+
 
 	protected:
 		// arts vector
