@@ -8,9 +8,9 @@ TestArt1InterfaceLayout::TestArt1InterfaceLayout()
 {
 	ofLog(ofLogLevel::OF_LOG_NOTICE, "Test Art1 InterfaceLayout init");
 
-	addPointButton = ofPtr<ofxDatGuiButton>(new ofxDatGuiButton("Add point"));
+	/*addPointButton = ofPtr<ofxDatGuiButton>(new ofxDatGuiButton("Add point"));
 	addPointButton->onButtonEvent(this, &TestArt1InterfaceLayout::addPointButtonClicked);
-	components.push_back(addPointButton);
+	components.push_back(addPointButton);*/
 
 	clearButton = ofPtr<ofxDatGuiButton>(new ofxDatGuiButton("Clear"));
 	clearButton->onButtonEvent(this, &TestArt1InterfaceLayout::clearButtonClicked);
@@ -36,7 +36,7 @@ void TestArt1InterfaceLayout::update()
 {
 	TestInterfaceLayout::update();
 	clearButton->update();
-	addPointButton->update();
+	//addPointButton->update();
 	changeArtButton->update();
 	changeColorButton->update();
 
@@ -48,11 +48,11 @@ void TestArt1InterfaceLayout::draw()
 	TestInterfaceLayout::draw();
 }
 
-void TestArt1InterfaceLayout::addPointButtonClicked(ofxDatGuiButtonEvent event)
+/*void TestArt1InterfaceLayout::addPointButtonClicked(ofxDatGuiButtonEvent event)
 {
 	auto type = InterfaceEventType::AddPoint;
 	ofNotifyEvent(InterfaceEvent, type);
-}
+}*/
 
 void TestArt1InterfaceLayout::clearButtonClicked(ofxDatGuiButtonEvent event)
 {

@@ -19,9 +19,9 @@ namespace iFish
 		virtual ~TestArt1InterfaceLayout();
 
 	private:
-		ofPtr<ofxDatGuiButton> addPointButton, clearButton, changeArtButton, changeColorButton, saveArtButton;
+		ofPtr<ofxDatGuiButton> /*addPointButton, */clearButton, changeArtButton, changeColorButton, saveArtButton;
 
-		void addPointButtonClicked(ofxDatGuiButtonEvent event);
+		//void addPointButtonClicked(ofxDatGuiButtonEvent event);
 		void clearButtonClicked(ofxDatGuiButtonEvent event);
 		void changeArtButtonClicked(ofxDatGuiButtonEvent event);
 		void changeColorButtonClicked(ofxDatGuiButtonEvent event);

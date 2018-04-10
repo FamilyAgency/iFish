@@ -49,6 +49,18 @@
 		<ClCompile Include="src\tracker\Tracker.cpp">
 			<Filter>src\tracker</Filter>
 		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxCurlNoise\src\CurlNoise.cpp">
+			<Filter>addons\ofxCurlNoise\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxCurlNoise\src\ofxCurlNoise.cpp">
+			<Filter>addons\ofxCurlNoise\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxCurlNoise\src\ParticleEmitter.cpp">
+			<Filter>addons\ofxCurlNoise\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxCurlNoise\src\ParticleManager.cpp">
+			<Filter>addons\ofxCurlNoise\src</Filter>
+		</ClCompile>
 		<ClCompile Include="..\..\..\addons\ofxDatGui\src\core\ofxDatGuiComponent.cpp">
 			<Filter>addons\ofxDatGui\src\core</Filter>
 		</ClCompile>
@@ -125,6 +137,12 @@
 		</Filter>
 		<Filter Include="addons">
 			<UniqueIdentifier>{71834F65-F3A9-211E-73B8-DC85}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxCurlNoise">
+			<UniqueIdentifier>{471446F1-7DE6-3119-65BD-3452}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxCurlNoise\src">
+			<UniqueIdentifier>{C272B921-901A-0D82-BE6B-2E07}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxDatGui">
 			<UniqueIdentifier>{B36B06DF-1AA4-00D4-5A1B-6893}</UniqueIdentifier>
@@ -280,6 +298,18 @@
 		</ClInclude>
 		<ClInclude Include="src\tracker\Tracker.h">
 			<Filter>src\tracker</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxCurlNoise\src\CurlNoise.h">
+			<Filter>addons\ofxCurlNoise\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxCurlNoise\src\ofxCurlNoise.h">
+			<Filter>addons\ofxCurlNoise\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxCurlNoise\src\ParticleEmitter.h">
+			<Filter>addons\ofxCurlNoise\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxCurlNoise\src\ParticleManager.h">
+			<Filter>addons\ofxCurlNoise\src</Filter>
 		</ClInclude>
 		<ClInclude Include="..\..\..\addons\ofxDatGui\src\components\ofxDatGui2dPad.h">
 			<Filter>addons\ofxDatGui\src\components</Filter>

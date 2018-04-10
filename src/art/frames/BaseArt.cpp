@@ -19,8 +19,13 @@ void BaseArt::clear()
 {
 	ofLog(ofLogLevel::OF_LOG_NOTICE, "Clear Art...");
 	points.clear();
-	ofClear(ofColor::white);
+	showBackground();
 	draw();
+}
+
+void BaseArt::showBackground()
+{
+	ofBackground(colors[colorIt][0]);
 }
 
 void BaseArt::changeColor()

@@ -41,7 +41,7 @@ namespace iFish
 		BaseArtPtr currentArt;
 		int currentArtIndex = 0;
 
-		ofFbo fbo;
+		ofFbo holst;
 
 		uint16_t startTime, endTime;
 	};

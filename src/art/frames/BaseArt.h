@@ -18,6 +18,8 @@ namespace iFish
 
 		void changeColor();
 
+		void showBackground();
+
 		virtual ~BaseArt();
 
 	protected:

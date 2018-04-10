@@ -22,7 +22,7 @@ void Art1::update()
 
 void Art1::draw()
 {
-	ofBackground(colors[colorIt][0]);
+	//ofBackground(colors[colorIt][0]);
 
 	for (int j = 0; j < points.size(); ++j)
 	{
