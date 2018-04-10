@@ -25,7 +25,8 @@ void BaseArt::clear()
 
 void BaseArt::showBackground()
 {
-	ofBackground(colors[colorIt][0]);
+	//ofBackground(colors[colorIt][0]);
+	ofBackgroundGradient(colors[colorIt][0], colors[colorIt][1], OF_GRADIENT_CIRCULAR);
 }
 
 void BaseArt::changeColor()
