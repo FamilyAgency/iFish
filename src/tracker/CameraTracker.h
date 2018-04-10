@@ -1,6 +1,7 @@
 #pragma once
 #include "ofMain.h"
 #include "Tracker.h"
+#include "../config/Config.h"
 
 #include "ofxOpenCv.h"
 
@@ -16,6 +17,7 @@ namespace iFish
 
 		void start();
 		void stop();
+		virtual void init(ConfigPtr config);
 
 		virtual void update() override;
 		virtual void draw() override;

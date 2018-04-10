@@ -42,6 +42,11 @@ CameraTracker::CameraTracker(int width_, int height_)
 	currenttrackState = NoTracking;
 }
 
+void CameraTracker::init(ConfigPtr config)
+{
+
+}
+
 void CameraTracker::setTrackColor(unsigned int red_min, unsigned int green_min, \
 																	unsigned int blue_min, unsigned int red_max, \
 																	unsigned int green_max, unsigned int blue_max)
