@@ -8,6 +8,11 @@ ArtSaver::ArtSaver()
 
 }
 
+void ArtSaver::init(ConfigPtr config)
+{
+
+}
+
 void ArtSaver::saveArt(ofImage img, std::string path)
 {
 	img.save(path);

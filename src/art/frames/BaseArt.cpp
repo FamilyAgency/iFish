@@ -8,6 +8,11 @@ BaseArt::BaseArt()
 	colorIt = 0;
 }
 
+void BaseArt::init(ConfigPtr config)
+{
+
+}
+
 void BaseArt::addPoint(ofVec3f point)
 {
 	//ofLog(ofLogLevel::OF_LOG_NOTICE, "Add Point...");

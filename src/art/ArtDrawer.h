@@ -24,6 +24,7 @@ namespace iFish
 
 		virtual void update();
 		virtual void draw();
+		virtual void init(ConfigPtr config);
 		virtual void changeArt();
 		
 		virtual void changeColor();
