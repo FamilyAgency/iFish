@@ -31,6 +31,4 @@ private:
 
 	void onConfigLoadComplete();
 	void onInterfaceEvent(iFish::InterfaceEventType& Event);
-
-	int numberOfSaveArt;
 };

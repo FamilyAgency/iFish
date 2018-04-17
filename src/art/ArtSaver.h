@@ -16,8 +16,12 @@ namespace iFish
 		ofEvent<void> artSaverSuccess;
 		ofEvent<void> errorEvent;
 
-		void saveArt(ofImage img, std::string path);
+		void saveArt(ofImage img);
 	
 		virtual ~ArtSaver();
+
+	private:
+		int numberOfSaveArt;
+
 	};
 }

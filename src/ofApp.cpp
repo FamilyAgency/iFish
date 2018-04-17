@@ -2,6 +2,7 @@
 #include "tracker/CameraTracker.h"
 #include "interface/TestTrackerInterfaceLayout.h"
 #include "interface/TestArt1InterfaceLayout.h"
+#include "tools/http/HttpService.h"
 
 using namespace iFish;
 
@@ -21,8 +22,6 @@ void ofApp::setup()
 	art1TestInterfaceLayout->setPosition(ofPoint(300, 40));
 	art1TestInterfaceLayout->setVisibility(true);
 	ofAddListener(art1TestInterfaceLayout->InterfaceEvent, this, &ofApp::onInterfaceEvent);
-
-	numberOfSaveArt = 0;
 
 	/*addTestInterfaceLayout = TestInterfaceLayoutPtr(new TestArt1InterfaceLayout());
 	addTestInterfaceLayout->setPosition(ofPoint(600, 40));
@@ -66,7 +65,7 @@ void ofApp::onInterfaceEvent(iFish::InterfaceEventType& Event)
 		break;
 
 	case InterfaceEventType::SaveArt:
-		artSaver->saveArt(artDrawer->getArt(), "images\\" + std::to_string(numberOfSaveArt++) + ".png");
+		artSaver->saveArt(artDrawer->getArt());
 		break;
 
 	case InterfaceEventType::AddPoint:

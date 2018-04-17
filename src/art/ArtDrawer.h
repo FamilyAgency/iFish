@@ -32,8 +32,9 @@ namespace iFish
 		void addPointToArt(ofVec3f point);
 		void clearArt();
 
-		ofImage getArt() const;
+		ofImage getArt();
 		void updateFBO();
+		void clearFBO();
 
 		virtual ~ArtDrawer();
 
@@ -42,7 +43,7 @@ namespace iFish
 		BaseArtPtr currentArt;
 		int currentArtIndex = 0;
 
-		ofFbo holst;
+		ofFbo fboHolst;
 
 		uint16_t startTime, endTime;
 	};

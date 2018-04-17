@@ -5,6 +5,7 @@ using namespace iFish;
 ArtSaver::ArtSaver()
 {
 	ofLog(ofLogLevel::OF_LOG_NOTICE, "Art Saver init");
+	numberOfSaveArt = 0;
 
 }
 
@@ -13,9 +14,9 @@ void ArtSaver::init(ConfigPtr config)
 
 }
 
-void ArtSaver::saveArt(ofImage img, std::string path)
+void ArtSaver::saveArt(ofImage img)
 {
-	img.save(path);
+	img.save("images\\" + std::to_string(numberOfSaveArt++) + ".png");
 }
 
 ArtSaver::~ArtSaver()

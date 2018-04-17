@@ -11,16 +11,17 @@ ArtDrawer::ArtDrawer()
 
 	arts.push_back(BaseArtPtr(new Art1()));
 	//arts.push_back(BaseArtPtr(new Art2()));
-	arts.push_back(BaseArtPtr(new Art3()));
+	//arts.push_back(BaseArtPtr(new Art3()));
 
 	currentArtIndex = 0;
 	currentArt = arts[currentArtIndex];
 
-	holst.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);
+	fboHolst.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA, 1);
 
 	endTime = 1 * 5;
 	startTime = ofGetElapsedTimef();
 
+	updateFBO();
 }
 
 void ArtDrawer::init(ConfigPtr config)
@@ -40,8 +41,7 @@ void ArtDrawer::update()
 
 void ArtDrawer::draw()
 {
-	currentArt->showBackground();
-	//holst.draw(0, 0);
+	fboHolst.draw(0, 0);
 	currentArt->draw();
 }
 
@@ -57,6 +57,7 @@ void ArtDrawer::changeArt()
 void ArtDrawer::changeColor()
 {
 	currentArt->changeColor();
+	clearArt();
 
 	ofLog(ofLogLevel::OF_LOG_NOTICE, "Change Color...");
 }
@@ -69,27 +70,38 @@ void ArtDrawer::addPointToArt(ofVec3f point)
 void ArtDrawer::clearArt()
 {
 	currentArt->clear();
+	clearFBO();
 }
 
-ofImage ArtDrawer::getArt() const {
+ofImage ArtDrawer::getArt() {
 	ofLog(ofLogLevel::OF_LOG_NOTICE, "Get Art...");
 	ofImage img;
-	holst.readToPixels(img.getPixelsRef());
+	updateFBO();
+	fboHolst.readToPixels(img.getPixelsRef());
 	img.update();
 	return img;
 }
 
-
 void ArtDrawer::updateFBO()
 {
-	holst.begin();
-	holst.draw(0, 0);
+	fboHolst.begin();
+	currentArt->showBackground();
+	fboHolst.draw(0, 0);
 	currentArt->draw();
-	holst.end();
-	//currentArt->clear();
+	fboHolst.end();
+	currentArt->clear();
 	ofLog(ofLogLevel::OF_LOG_NOTICE, "Save To FBO...");
 }
 
+void ArtDrawer::clearFBO()
+{
+	fboHolst.begin();
+	currentArt->showBackground();
+	fboHolst.end();
+
+	startTime = ofGetElapsedTimef();
+	updateFBO();
+}
 
 ArtDrawer::~ArtDrawer()
 {
