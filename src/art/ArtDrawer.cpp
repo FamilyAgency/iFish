@@ -41,6 +41,7 @@ void ArtDrawer::update()
 
 void ArtDrawer::draw()
 {
+	ofSetColor(255);
 	fboHolst.draw(0, 0);
 	currentArt->draw();
 }
@@ -85,6 +86,7 @@ ofImage ArtDrawer::getArt() {
 void ArtDrawer::updateFBO()
 {
 	fboHolst.begin();
+	ofSetColor(255);
 	currentArt->showBackground();
 	fboHolst.draw(0, 0);
 	currentArt->draw();
