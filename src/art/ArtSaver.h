@@ -2,6 +2,8 @@
 #include "ofMain.h"
 #include "../interface/TestArt1InterfaceLayout.h"
 #include "../config/Config.h"
+#include "../tools/http/HttpService.h"
+
 
 namespace iFish
 {

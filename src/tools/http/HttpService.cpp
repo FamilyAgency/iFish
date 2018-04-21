@@ -1,6 +1,6 @@
 #include "HttpService.h"
 
-using namespace bbrother;
+using namespace iFish;
 
 HttpService::HttpService()
 {

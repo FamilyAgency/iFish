@@ -1,6 +1,7 @@
 #pragma once
 #include "ofMain.h"
 #include "../../config/Config.h"
+#include "ofFbo.h"
 
 
 namespace iFish
@@ -27,6 +28,13 @@ namespace iFish
 
 
 	protected:
+		ofColor getChangingColor(int it);
+		void updateChangingColor();
+
+		int changeIt, changingCount;
+		int num;
+
+		ofFbo fboHolst;
 		// arts vector
 		std::vector<std::vector<ofColor>> colors = {
 			std::vector<ofColor>{
@@ -83,6 +91,13 @@ namespace iFish
 		int colorIt;
 
 		std::vector<ofVec3f> points;
+
+	private:
+		void setBackgroundColors();
+		void setAlphaBetta();
+
+		float alpha, betta;
+		uint16_t startTime, endTime;
+		ofColor back1, back2;
 	};
 }
-

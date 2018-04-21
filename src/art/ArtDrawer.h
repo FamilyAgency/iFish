@@ -34,7 +34,6 @@ namespace iFish
 
 		ofImage getArt();
 		void updateFBO();
-		void clearFBO();
 
 		virtual ~ArtDrawer();
 

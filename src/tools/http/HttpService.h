@@ -4,7 +4,7 @@
 #include "ofxHttpTypes.h"
 #include "ofxHttpUtils.h"
 
-namespace bbrother
+namespace iFish
 {
 	class HttpService
 	{

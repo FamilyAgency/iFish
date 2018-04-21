@@ -22,7 +22,7 @@ namespace iFish
 		ofxCurlNoise curlNoise;
 
 		int x = 0, y = 0;
-		uint16_t startTime, endTime;
+		uint16_t startTimeForPoint, endTimeForPoint;
 	};
 }
 
