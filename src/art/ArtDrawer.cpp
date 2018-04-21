@@ -104,6 +104,7 @@ void ArtDrawer::updateFBO()
 	fboHolst.begin();
 
 	ofSetColor(255);
+	currentArt->showBackground();
 	fboHolst.draw(0, 0);
 	currentArt->draw();
 
@@ -115,5 +116,5 @@ void ArtDrawer::updateFBO()
 
 ArtDrawer::~ArtDrawer()
 {
-	fboHolst.clear();
+
 }
