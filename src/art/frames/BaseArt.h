@@ -18,6 +18,7 @@ namespace iFish
 
 		void addPoint(ofVec3f);
 		void clear();
+		void clearAll();
 
 		void changeColor();
 

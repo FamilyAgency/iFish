@@ -33,12 +33,16 @@ void BaseArt::clear()
 {
 	ofLog(ofLogLevel::OF_LOG_NOTICE, "Clear Art...");
 	points.clear();
+	num = 0;
+}
+
+void BaseArt::clearAll()
+{
+	clear();
 
 	fboHolst.begin();
 	ofBackground(0, 0);
 	fboHolst.end();
-
-	num = 0;
 }
 
 void BaseArt::showBackground()

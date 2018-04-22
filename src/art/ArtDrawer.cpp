@@ -75,7 +75,7 @@ void ArtDrawer::clearArt()
 	ofBackground(0, 0);
 	fboHolst.end();
 
-	currentArt->clear();
+	currentArt->clearAll();
 
 	startTime = ofGetElapsedTimef();
 }
