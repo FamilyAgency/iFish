@@ -18,10 +18,11 @@ namespace iFish
 		virtual ~Art1();
 
 	private:
-		// arts vector
+		void drawCurrentPicture(int);
 	
 		int x = 0, y = 0;		
 		uint16_t startTimeForPoint, endTimeForPoint;
+		int kindPicture;
 	};
 }
 

@@ -7,6 +7,7 @@ Art1::Art1()
 	ofLog(ofLogLevel::OF_LOG_NOTICE, "Concrete Art 1 init");
 	endTimeForPoint = 1 * 20;
 	startTimeForPoint = ofGetElapsedTimeMillis();
+	kindPicture = 2;
 }
 
 void Art1::update()
@@ -32,6 +33,26 @@ void Art1::draw()
 	{
 		ofSetColor(getChangingColor(j % colors[colorIt].size()));
 		ofFill();
+		drawCurrentPicture(j);
+	}
+	num = points.size();
+
+	fboHolst.end();
+
+	fboHolst.draw(0, 0);
+}
+
+void Art1::drawCurrentPicture(int j)
+{
+	switch (kindPicture)
+	{
+	case 0:
+		ofDrawCircle(points[j], j % 8 + 1);
+		break;
+	case 1:
+		ofDrawCircle(points[j], rand() % 8 + 1);
+		break;
+	case 2:
 		switch (rand() % 3)
 		{
 		case 0:
@@ -46,12 +67,12 @@ void Art1::draw()
 		default:
 			break;
 		}
+		break;
+
+	default:
+		break;
 	}
-	num = points.size();
-
-	fboHolst.end();
-
-	fboHolst.draw(0, 0);
+	
 }
 
 Art1::~Art1()
