@@ -41,10 +41,9 @@ namespace iFish
 		std::vector<BaseArtPtr> arts;
 		BaseArtPtr currentArt;
 		int currentArtIndex = 0;
-
 		ofFbo fboHolst;
-
 		uint16_t startTime, endTime;
+		const int fboSamples = 16;		
 	};
 }
 

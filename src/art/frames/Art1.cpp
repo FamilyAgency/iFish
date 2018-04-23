@@ -7,7 +7,7 @@ Art1::Art1()
 	ofLog(ofLogLevel::OF_LOG_NOTICE, "Concrete Art 1 init");
 	endTimeForPoint = 1 * 20;
 	startTimeForPoint = ofGetElapsedTimeMillis();
-	kindPicture = 2;
+	drawType = DrawType::RandomFigure;
 }
 
 void Art1::update()
@@ -44,35 +44,36 @@ void Art1::draw()
 
 void Art1::drawCurrentPicture(int j)
 {
-	switch (kindPicture)
+	switch (drawType)
 	{
-	case 0:
+	case DrawType::Circle1:
 		ofDrawCircle(points[j], j % 8 + 1);
 		break;
-	case 1:
+
+	case DrawType::Circle2:
 		ofDrawCircle(points[j], rand() % 8 + 1);
 		break;
-	case 2:
-		switch (rand() % 3)
-		{
-		case 0:
-			ofDrawCircle(points[j], rand() % 8 + 1);
-			break;
-		case 1:
-			ofDrawEllipse(points[j], rand() % 16 + 1, rand() % 16 + 1);
-			break;
-		case 2:
-			ofDrawRectangle(points[j], rand() % 16 + 1, rand() % 16 + 1);
-			break;
-		default:
-			break;
-		}
-		break;
 
-	default:
+	case DrawType::RandomFigure:
+		drawRandomStuff(j);
 		break;
-	}
-	
+	}	
+}
+
+void Art1::drawRandomStuff(int j)
+{
+	switch (rand() % 3)
+	{
+	case 0:
+		ofDrawCircle(points[j], rand() % 8 + 1);
+		break;
+	case 1:
+		ofDrawEllipse(points[j], rand() % 16 + 1, rand() % 16 + 1);
+		break;
+	case 2:
+		ofDrawRectangle(points[j], rand() % 16 + 1, rand() % 16 + 1);
+		break;	
+	}	
 }
 
 Art1::~Art1()

@@ -16,9 +16,9 @@ ArtDrawer::ArtDrawer()
 	currentArtIndex = 0;
 	currentArt = arts[currentArtIndex];
 
-	fboHolst.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);
+	fboHolst.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA, fboSamples);
 
-	endTime = 1 * 5;
+	endTime = 1 * 10;
 	startTime = ofGetElapsedTimef();
 
 	updateFBO();
@@ -86,7 +86,7 @@ ofImage ArtDrawer::getArt()
 	updateFBO();
 
 	ofFbo fbo;
-	fbo.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA, 1);
+	fbo.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA, fboSamples);
 	fbo.begin();
 	currentArt->showBackground();
 	fboHolst.draw(0, 0);

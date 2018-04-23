@@ -18,11 +18,20 @@ namespace iFish
 		virtual ~Art1();
 
 	private:
-		void drawCurrentPicture(int);
-	
+		enum class DrawType
+		{
+			None,
+			Circle1,
+			Circle2,
+			RandomFigure
+		};
+
 		int x = 0, y = 0;		
 		uint16_t startTimeForPoint, endTimeForPoint;
-		int kindPicture;
+		DrawType drawType;
+
+		void drawCurrentPicture(int value);
+		void drawRandomStuff(int value);
 	};
 }
 

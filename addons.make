@@ -1,4 +1,3 @@
-ofxCurlNoise
-ofxDatGui
 ofxGui
 ofxOpenCv
+ofxDatGui
