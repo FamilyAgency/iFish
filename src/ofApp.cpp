@@ -112,6 +112,10 @@ void ofApp::draw()
 
 	reportStr << "velocity: " << std::to_string(tracker->getVelocity()) << endl;
 	ofDrawBitmapString(reportStr.str(), 400, 540);
+
+    // setting epsilon-distancy
+    // current point is saved in arrays if distancy(current point, last point) >= epsilon
+    tracker->setEpsilonUpdate(2.5);
 #endif
 }
 

@@ -8,17 +8,21 @@ CameraTracker::CameraTracker()
 	CameraTracker(320, 240);
 }
 
-CameraTracker::CameraTracker(int width_, int height_)
+CameraTracker::CameraTracker(int width, int height)
 {
 	ofLog(ofLogLevel::OF_LOG_NOTICE, "Camera Tracker init");
 
-	width = width_;
-	height = height_;
+	this->width = width;
+	this->height = height;
 	ofLog(ofLogLevel::OF_LOG_NOTICE, "Camera Tracker width = " + ofToString(width));
 	ofLog(ofLogLevel::OF_LOG_NOTICE, "Camera Tracker height = " + ofToString(height));
 
-	vidGrabber.setVerbose(true);
-	vidGrabber.setup(width, height);
+    devicesID = { Front, Side };
+    currentType = Front;
+    vidGrabber.listDevices();
+    vidGrabber.setDeviceID(Front);
+    vidGrabber.setVerbose(true);
+    vidGrabber.setup(width, height);
 
 	colorImg.allocate(width, height);
 	rgbImage[0].allocate(width, height);
@@ -27,47 +31,36 @@ CameraTracker::CameraTracker(int width_, int height_)
 	thresholdedImage.allocate(width, height);
 
 	currentUpdate = 1;
-	currentTrackPoints = &trackPoints_one;
-	currentTrackTimes = &trackTimes_one;
+	currentTrackPoints = &trackPointsArrayFirst;
+	currentTrackTimes = &trackTimesArrayFirst;
 	pointsNumStored = 0;
+    objVelocity = 0.;
+    currenttrackState = NoTracking;
 
-	// Default значения для трекинга
-	trackUpdate = 0.;  // миллисекунды
-	trackThreshold_min = 50;
-	trackThreshold_max = width * height / 2;
-	setTrackColor(0, 0, 0, 255, 255, 255);
-	objVelocity = 0;
-	positionCamera.set(0, 0);
-
-	currenttrackState = NoTracking;
+	// Default values for tracking
+    setTrackUpdate(0.);  // in milliseconds
+    setTrackThreshold(50, width * height / 2);
+    setTrackColor(ofVec3f(0, 0, 0), ofVec3f(255, 255, 255));
+    setEpsilonUpdate(0.);
+    setCameraRect(0, width, 0, height);
+    setPositionCamera(ofPoint(0, 0));
 }
 
-void CameraTracker::init(ConfigPtr config)
+void CameraTracker::setTrackColor(ofVec3f vecMin, ofVec3f vecMax)
 {
-
+    trackColorMin = vecMin;
+    trackColorMax = vecMax;
 }
 
-void CameraTracker::setTrackColor(unsigned int red_min, unsigned int green_min, \
-																	unsigned int blue_min, unsigned int red_max, \
-																	unsigned int green_max, unsigned int blue_max)
+void CameraTracker::setTrackUpdate(float time)
 {
-	trackColor_min[0] = red_min;
-	trackColor_min[1] = green_min;
-	trackColor_min[2] = blue_min;
-	trackColor_max[0] = red_max;
-	trackColor_max[1] = green_max;
-	trackColor_max[2] = blue_max;
+	trackUpdate = time;
 }
 
-void CameraTracker::setTrackUpdate(float time_)
+void CameraTracker::setTrackThreshold(float min, float max)
 {
-	trackUpdate = time_;
-}
-
-void CameraTracker::setTrackThreshold(float min_, float max_)
-{
-	trackThreshold_min = min_;
-	trackThreshold_max = max_;
+	trackThresholdMin = min;
+	trackThresholdMax = max;
 }
 
 void CameraTracker::start()
@@ -86,62 +79,75 @@ void CameraTracker::stop()
 
 void CameraTracker::updateCurrentTrackValues()
 {
-	if (currentTrackPoints == &trackPoints_one)
+	if (currentTrackPoints == &trackPointsArrayFirst)
 	{
-		if (trackPoints_one.size() == trackPoints_one.max_size() - 1)
+		if (trackPointsArrayFirst.size() == trackPointsArrayFirst.max_size() - 1)
 		{
-			trackPoints_two.clear();
-			currentTrackPoints = &trackPoints_two;
-			trackTimes_two.clear();
-			currentTrackTimes = &trackTimes_two;
+			trackPointsArraySecond.clear();
+			currentTrackPoints = &trackPointsArraySecond;
+			trackTimesArraySecond.clear();
+			currentTrackTimes = &trackTimesArraySecond;
 		}
 	}
-	else if (trackPoints_two.size() == trackPoints_two.max_size() - 1)
+	else if (trackPointsArraySecond.size() == trackPointsArraySecond.max_size() - 1)
 	{
-		trackPoints_one.clear();
-		currentTrackPoints = &trackPoints_one;
-		trackTimes_one.clear();
-		currentTrackTimes = &trackTimes_one;
+		trackPointsArrayFirst.clear();
+		currentTrackPoints = &trackPointsArrayFirst;
+		trackTimesArrayFirst.clear();
+		currentTrackTimes = &trackTimesArrayFirst;
 	}
 
-	pointsNumStored = trackPoints_one.size() + trackPoints_two.size();
+	pointsNumStored = trackPointsArrayFirst.size() + trackPointsArraySecond.size();
 }
 
 void CameraTracker::thresholdUpdate()
 {
-	// convert to hsb
+	// convert to hsb (if need more accurancy? i dunno)
 	//colorImg.convertRgbToHsv();
 
 	// store the three channels as grayscale images
 	colorImg.convertToGrayscalePlanarImages(rgbImage[0], rgbImage[1], rgbImage[2]);
 
 	// filter image based on the hue value were looking for
-	for (int i = 0; i < width*height; i++)
-	{
-		bool color_i = true;
-		for (int k = 0; k < 3; k++)
-		{
-			color_i = color_i && ofInRange(rgbImage[k].getPixels()[i], \
-																		trackColor_min[k], trackColor_max[k]);
-		}
-		thresholdedImage.getPixels()[i] = color_i ? 255 : 0;
-	}
+    // The equivalent statement to "get(x, y)" is "pixels[y*width+x]".
+    for (int x = 0; x < width; x++)
+    {
+        for (int y = 0; y < height; y++)
+        {
+            bool colorXY = true;
+            for (int k = 0; k < 3; k++)
+            {
+                colorXY = colorXY && ofInRange(rgbImage[k].getPixels()[y*width+x], 
+                    trackColorMin[k], trackColorMax[k]);
+            }
+            // is (x, y) in cameraRect:
+            colorXY = colorXY && ofInRange(x, cameraRect[0], cameraRect[1]);
+            colorXY = colorXY && ofInRange(y, cameraRect[2], cameraRect[3]);
+
+            thresholdedImage.getPixels()[y*width + x] = colorXY ? 255 : 0;
+        }
+    }
+
 	thresholdedImage.flagImageChanged();
 
 	// find one blob
-	contours.findContours(thresholdedImage, trackThreshold_min, \
-												trackThreshold_max, 1, false);
+	contours.findContours(thresholdedImage, trackThresholdMin, trackThresholdMax, 1, false);
 
 	if (contours.nBlobs > 0)
 	{
 		objLocation = contours.blobs[0].centroid;
-		currentTrackPoints->push_back(objLocation);
-		currentTrackTimes->push_back(ofGetElapsedTimeMillis());
-		objVelocity = calculateVelocity();
 
-		//ofLog(ofLogLevel::OF_LOG_NOTICE, "Velocity" + std::to_string(objVelocity));
+        // add point to array if epsilon-distancy is reached
+        if (getPointsNumStored() == 0 || objLocation.distance(getLastPoint()) >= epsilonDistance)
+        {
+            currentTrackPoints->push_back(objLocation);
+            currentTrackTimes->push_back(ofGetElapsedTimeMillis());
+            objVelocity = calculateVelocity();
 
-		updateCurrentTrackValues();
+            //ofLog(ofLogLevel::OF_LOG_NOTICE, "Velocity" + std::to_string(objVelocity));
+
+            updateCurrentTrackValues();
+        }
 	}
 }
 
@@ -182,8 +188,8 @@ void CameraTracker::draw()
 		ofFill();
 		if (contours.nBlobs == 1)
 		{
-			ofCircle(positionCamera.x + contours.blobs[0].centroid.x, \
-							positionCamera.y + contours.blobs[0].centroid.y, 10);
+			ofCircle(positionCamera.x + contours.blobs[0].centroid.x, 
+                positionCamera.y + contours.blobs[0].centroid.y, 10);
 		}
 	}
 }
@@ -195,7 +201,7 @@ void CameraTracker::clear()
 
 CameraTracker::~CameraTracker()
 {
-	// TODO: посмотреть, что можно очистить?
+	// TODO: need to look what we can do for destructor
 }
 
 float CameraTracker::calculateVelocity() const
@@ -221,8 +227,9 @@ float CameraTracker::calculateVelocity() const
 		float velocity_y = delta_point_y / delta_time;
 		float velocity_z = delta_point_z / delta_time;
 
-		velocity += velocity_x * velocity_x + velocity_y * velocity_y + \
-								velocity_z * velocity_z;
+		velocity += velocity_x * velocity_x + 
+            velocity_y * velocity_y + 
+            velocity_z * velocity_z;
 	}
 
 	velocity = velocity / points_size;
@@ -253,12 +260,12 @@ void CameraTracker::setColorsFromMousePressed(int x, int y, int acc)
 		int green = rgbImage[1].getPixels()[y*width + x];
 		int blue = rgbImage[2].getPixels()[y*width + x];
 
-		trackColor_min[0] = std::max(0, red - acc);
-		trackColor_max[0] = std::min(255, red + acc);
-		trackColor_min[1] = std::max(0, green - acc);
-		trackColor_max[1] = std::min(255, green + acc);
-		trackColor_min[2] = std::max(0, blue - acc);
-		trackColor_max[2] = std::min(255, blue + acc);
+        trackColorMin[0] = std::max(0, red - acc);
+        trackColorMax[0] = std::min(255, red + acc);
+		trackColorMin[1] = std::max(0, green - acc);
+		trackColorMax[1] = std::min(255, green + acc);
+		trackColorMin[2] = std::max(0, blue - acc);
+		trackColorMax[2] = std::min(255, blue + acc);
 	}
 }
 
@@ -267,12 +274,35 @@ void CameraTracker::setPositionCamera(const ofPoint& position)
 	positionCamera = position;
 }
 
-const unsigned int* CameraTracker::getTrackColorMin() const
+const ofVec3f CameraTracker::getTrackColorMin() const
 {
-	return trackColor_min;
+	return trackColorMin;
 }
 
-const unsigned int* CameraTracker::getTrackColorMax() const
+const ofVec3f CameraTracker::getTrackColorMax() const
 {
-	return trackColor_max;
+	return trackColorMax;
+}
+
+ofVec3f CameraTracker::getLastPoint() const
+{
+    return currentTrackPoints->back();
+}
+
+std::vector<ofVec3f> CameraTracker::getAllPoints() const
+{
+    return *currentTrackPoints;
+}
+
+void CameraTracker::setCameraRect(int xmin, int xmax, int ymin, int ymax)
+{
+    cameraRect[0] = xmin;
+    cameraRect[1] = xmax;
+    cameraRect[2] = ymin;
+    cameraRect[3] = ymax;
+}
+
+void CameraTracker::setEpsilonUpdate(float epsilonUpdate)
+{
+    this->epsilonDistance = epsilonUpdate;
 }
