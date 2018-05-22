@@ -17,10 +17,13 @@ namespace iFish
 
 	private:
 		ofPtr<ofxDatGuiButton> trackingStartButton, trackingStopButton;
+		ofPtr<ofxDatGuiButton> showCameraButton, showTrackerButton;
 		ofPtr<ofxDatGuiLabel> peopleTrackedText;
 
 		void trackingStartButtonClicked(ofxDatGuiButtonEvent event);
 		void trackingStopButtonClicked(ofxDatGuiButtonEvent event);
+		void showCameraButtonClicked(ofxDatGuiButtonEvent event);
+		void showTrackerButtonClicked(ofxDatGuiButtonEvent event);
 	};
 }
 

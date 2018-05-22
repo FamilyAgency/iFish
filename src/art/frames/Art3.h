@@ -1,7 +1,7 @@
 #pragma once
 #include "ofMain.h"
 #include "BaseArt.h"
-//#include "ofxCurlNoise.h"
+#include "ofxCurlNoise.h"
 #include "ofxGui.h"
 
 
@@ -18,8 +18,8 @@ namespace iFish
 		virtual ~Art3();
 
 	private:
-		//ParticleEmitter emitter;
-		//ofxCurlNoise curlNoise;
+		ParticleEmitter emitter;
+		ofxCurlNoise curlNoise;
 
 		int x = 0, y = 0;
 		uint16_t startTimeForPoint, endTimeForPoint;

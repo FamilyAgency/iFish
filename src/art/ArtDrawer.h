@@ -35,6 +35,8 @@ namespace iFish
 		ofImage getArt();
 		void updateFBO();
 
+		void setVisibility(bool flag);
+
 		virtual ~ArtDrawer();
 
 	private:
@@ -44,6 +46,7 @@ namespace iFish
 		ofFbo fboHolst;
 		uint16_t startTime, endTime;
 		const int fboSamples = 16;		
+		bool isVisible;
 	};
 }
 

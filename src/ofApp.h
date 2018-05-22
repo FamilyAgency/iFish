@@ -1,7 +1,8 @@
 #pragma once
 
 #include "ofMain.h"
-#include "tracker/Tracker.h"
+//#include "tracker/Tracker.h"
+#include "tracker/CameraTracker.h"
 #include "config/Config.h"
 #include "art/ArtDrawer.h"
 #include "art/ArtSaver.h"
@@ -19,7 +20,7 @@ class ofApp : public ofBaseApp{
 
 private:
 	iFish::ConfigPtr config;
-	iFish::TrackerPtr tracker;
+	iFish::CameraTrackerPtr tracker;
 	iFish::ArtDrawerPtr artDrawer;
 	iFish::ArtSaverPtr artSaver;
 
@@ -31,4 +32,5 @@ private:
 
 	void onConfigLoadComplete();
 	void onInterfaceEvent(iFish::InterfaceEventType& Event);
+	void mousePressed(int x, int y, int button);
 };

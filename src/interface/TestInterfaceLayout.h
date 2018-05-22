@@ -10,6 +10,8 @@ namespace iFish
 		None,
 		TrackingStart,
 		TrackingStop,
+		ShowCamera,
+		ShowTracker,
 		NewPointCome,
 
 		AddPoint,

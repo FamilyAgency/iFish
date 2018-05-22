@@ -12,6 +12,15 @@ TestTrackerInterfaceLayout::TestTrackerInterfaceLayout()
 
 	trackingStopButton = ofPtr<ofxDatGuiButton>(new ofxDatGuiButton("Tracking Stop"));
 	trackingStopButton->onButtonEvent(this, &TestTrackerInterfaceLayout::trackingStopButtonClicked);
+	
+	showCameraButton = ofPtr<ofxDatGuiButton>(new ofxDatGuiButton("Show camera"));
+	showCameraButton->onButtonEvent(this, &TestTrackerInterfaceLayout::showCameraButtonClicked);
+	components.push_back(showCameraButton);
+
+	showTrackerButton = ofPtr<ofxDatGuiButton>(new ofxDatGuiButton("Show tracker"));
+	showTrackerButton->onButtonEvent(this, &TestTrackerInterfaceLayout::showTrackerButtonClicked);
+	components.push_back(showTrackerButton);
+	
 	//trackingStopButton->setEnabled(false);
 	components.push_back(trackingStopButton);
 
@@ -38,6 +47,18 @@ void TestTrackerInterfaceLayout::trackingStartButtonClicked(ofxDatGuiButtonEvent
 void TestTrackerInterfaceLayout::trackingStopButtonClicked(ofxDatGuiButtonEvent event)
 {
 	auto type = InterfaceEventType::TrackingStop;
+	ofNotifyEvent(InterfaceEvent, type);
+}
+
+void TestTrackerInterfaceLayout::showCameraButtonClicked(ofxDatGuiButtonEvent event)
+{
+	auto type = InterfaceEventType::ShowCamera;
+	ofNotifyEvent(InterfaceEvent, type);
+}
+
+void TestTrackerInterfaceLayout::showTrackerButtonClicked(ofxDatGuiButtonEvent event)
+{
+	auto type = InterfaceEventType::ShowTracker;
 	ofNotifyEvent(InterfaceEvent, type);
 }
 

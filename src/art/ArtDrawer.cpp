@@ -21,12 +21,19 @@ ArtDrawer::ArtDrawer()
 	endTime = 1 * 10;
 	startTime = ofGetElapsedTimef();
 
+	isVisible = false;
+
 	updateFBO();
 }
 
 void ArtDrawer::init(ConfigPtr config)
 {
 
+}
+
+void ArtDrawer::setVisibility(bool flag)
+{
+	isVisible = flag;
 }
 
 void ArtDrawer::update()
@@ -41,10 +48,13 @@ void ArtDrawer::update()
 
 void ArtDrawer::draw()
 {
-	ofSetColor(255);
-	currentArt->showBackground();
-	fboHolst.draw(0, 0);
-	currentArt->draw();
+	if (isVisible)
+	{
+		ofSetColor(255);
+		currentArt->showBackground();
+		fboHolst.draw(0, 0);
+		currentArt->draw();
+	}
 }
 
 void ArtDrawer::changeArt()

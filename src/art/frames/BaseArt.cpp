@@ -78,7 +78,7 @@ ofColor BaseArt::getChangingColor(int it)
 
 void BaseArt::updateChangingColor()
 {
-	if (ofGetElapsedTimef() - startTime >= endTime)
+	if (ofGetElapsedTimef() - startTime >= 0.)//endTime)
 	{
 		startTime = ofGetElapsedTimef();
 		setAlphaBetta();
